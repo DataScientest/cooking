@@ -8,7 +8,7 @@ Specifications
 command : id, restaurant, menu, day, hour
 participant : id, name, mail, command_id (reference), command details
 
-# Routes
+## Routes
 CRUD (create, read, update, delete) 
 CRUD command
 CRUD particant
