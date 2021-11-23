@@ -1,6 +1,6 @@
 # Cooking API
 
-Cooking API is an open source API to organize lunch command from multiples peoples
+Cooking API is an open source API to organize lunch command for multiples peoples in a same place
 
 Specifications
 
