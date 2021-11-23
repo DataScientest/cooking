@@ -5,8 +5,8 @@ Cooking API is an open source API to organize lunch command from multiples peopl
 Specifications
 
 ## Data
-command : id, restaurant, menu, day, hour
-participant : id, name, mail, command_id (reference), command details
+* command : id, restaurant, menu, day, hour
+* participant : id, name, mail, command_id (reference), command details
 
 ## Routes
 CRUD (create, read, update, delete) 
