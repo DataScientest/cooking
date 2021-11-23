@@ -10,9 +10,9 @@ Specifications
 
 ## Routes
 CRUD (create, read, update, delete) 
-CRUD command
-CRUD particant
+* CRUD command
+* CRUD particant
 
 ## Functionalities
-create a new command
-participate to a command by adding name, email and command details
+* create a new command
+* participate to a command by adding name, email and command details
