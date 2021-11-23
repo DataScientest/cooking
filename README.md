@@ -6,7 +6,7 @@ Specifications
 
 ## Data
 * command : id, restaurant, menu, day, hour
-* participant : id, name, mail, command_id (reference), command details
+* participant : id, name, mail, command_id (reference), command_details
 
 ## Routes
 CRUD (create, read, update, delete) 
@@ -14,5 +14,5 @@ CRUD (create, read, update, delete)
 * CRUD particant
 
 ## Functionalities
-* create a new command
-* participate to a command by adding name, email and command details
+* As an organisator i want to create a new command
+* As a participant i want to order by adding name, email and command_details
