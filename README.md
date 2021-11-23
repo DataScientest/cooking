@@ -15,4 +15,4 @@ CRUD (create, read, update, delete)
 
 ## Functionalities
 * As an organisator i want to create a new command
-* As a participant i want to order by adding name, email and command_details
+* As a participant i want to order by adding my name, email and command_details
