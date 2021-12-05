@@ -1,0 +1,6 @@
+include LICENSE
+include cooking/schema.sql
+graft cooking/static
+graft cooking/templates
+graft tests
+global-exclude *.pyc

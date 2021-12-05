@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit Command from "{{ command['restaurant'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="restaurant">Restaurant</label>
+    <input name="restaurant" id="restaurant" value="{{ request.form['restaurant'] or command['restaurant'] }}" required>
+    <label for="menu">Menu</label>
+    <textarea name="menu" id="menu">{{ request.form['menu'] or command['menu'] }}</textarea>
+    <label for="Command_day">Command Day</label>
+    <input name="command_day" type="date" id="command_day" value="{{ request.form['command_day'] or command['command_day'] }}" required>
+    <label for="command_hour">Command Hour</label>
+    <input name="command_hour" type="time" id="command_hour" value="{{ request.form['command_hour'] or command['command_hour'] }}" required>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('command.delete', id=command['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}

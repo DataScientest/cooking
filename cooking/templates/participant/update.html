@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Edit "{{ participant['name'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="name">Name</label>
+    <input name="name" id="name" value="{{ request.form['name'] or participant['name'] }}" required>
+    <label for="mail">Mail</label>
+    <input name="mail" id="mail" value="{{ request.form['mail'] or participant['mail'] }}" required>
+    <label for="command_details">Command Details</label>
+    <textarea name="command_details" required id="command_details">{{ request.form['command_details'] or participant['command_details'] }}</textarea>
+    <label for="command_id">Command</label>
+    <select name="command_id" id="command_id">
+        <option value="{{ request.form['command_id'] or participant['command_id'] }}" selected>{{ participant['restaurant'] }}</option>
+        {% for command in commands %}
+        {% if command['id'] !=  request.form['command_id'] and command['id'] !=  participant['command_id'] %}
+        <option value="{{ command['id'] }}">{{ command['restaurant'] }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="Save">
+</form>
+<hr>
+<form action="{{ url_for('participant.delete', id=participant['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+{% endblock %}
