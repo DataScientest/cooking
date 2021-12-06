@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<ul>
+    <li><a class="action" href="{{ url_for('command.index') }}">Commands Dashboard</a></li>
+   <li><a class="action" href="{{ url_for('participant.index') }}">Participant Dashboard</a></li>
+</ul>
+<h1>Particpant Dashboard</h1>
+<ul>
+    <li><a class="action" href="{{ url_for('participant.index_2') }}">Participant Dashboard</a></li>
+</ul>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Participants{% endblock %}</h1>
+{% if g.user %}
+<a class="action" href="{{ url_for('participant.create') }}">New</a>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% for participant in participants %}
+<article class="post">
+    <header>
+        <div>
+            <h1>{{ participant['name'] }}</h1>
+            <div class="about">{{ participant['mail'] }}</div>
+        </div>
+        <a class="action" href="{{ url_for('participant.update', id=participant['id']) }}">Edit</a>
+    </header>
+    <p>Restaurant: {{ participant['restaurant'] }}</p>
+    <p> Date :{{ participant['command_day'] }} at {{participant['command_hour'] }}  </p>
+    <p>Command Details: {{ participant['command_details'] }}</p>
+    </p>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endblock %}
