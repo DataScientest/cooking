@@ -1,3 +1,25 @@
+# Cooking API
+
+Cooking API is an open source API to organize lunch orders for multiples peoples in a same place
+
+Specifications
+
+## Data
+* order : id, restaurant, menu, day, hour
+* participant : id, name, mail, order_id (reference), order_details
+
+## Routes
+CRUD (create, read, update, delete) 
+* CRUD order
+* CRUD particant
+
+## Functionalities
+* As an organisator i want to create a new order
+* As a participant i want to order by adding my name, email and order_details
+
+
+
+---
 
 ## Table of Contents
 1. [General Info](#general-info)
@@ -47,3 +69,4 @@ $ pip install pytest && pytest
 * A table representing  restaurants ( id, name,menu) will be better .
 * The Menu for the moment is a Text but we can attach an image instead if it's possible.    
 * The Tests that I wrote cover only the authentication functionality and The command CRUD.  
+
