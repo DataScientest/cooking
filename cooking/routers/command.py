@@ -14,13 +14,13 @@ bp = Blueprint("command", __name__, url_prefix="/command")
 
 @bp.route("/")
 def index():
-    """Show all the commands, most recent first."""
+    """Show all commands, most recent first."""
     db = get_db()
     commands = db.execute(
-        "SELECT c.id, restaurant, menu, Command_day, command_hour, group_concat(p.name) as participants_names "
+        "SELECT c.id, restaurant, menu, command_day, command_hour, group_concat(p.name) as participants_names "
         "FROM command c LEFT JOIN participant p ON p.command_id= c.id "
         "GROUP BY c.id "
-        "ORDER BY Command_day DESC "
+        "ORDER BY command_day DESC "
     ).fetchall()
     return render_template("command/index.html", commands=commands)
 
@@ -37,7 +37,7 @@ def get_command(id):
     """
     command = (
         get_db().execute(
-            "SELECT id, restaurant, menu, Command_day, command_hour"
+            "SELECT id, restaurant, menu, command_day, command_hour"
             " FROM command"
             " WHERE id = ?",
             (id,),

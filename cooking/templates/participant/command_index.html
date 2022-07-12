@@ -10,7 +10,7 @@
       <header>
         <div>
           <h1>Restaurant:{{ command['restaurant'] }}</h1>
-          <div class="about">on {{ command['Command_day'] }} {{ command['command_hour'] }}</div>
+          <div class="about">on {{ command['command_day'] }} {{ command['command_hour'] }}</div>
         </div>
           <a class="action" href="{{ url_for('participant.order', command_id=command['id']) }}">Order</a>
       </header>

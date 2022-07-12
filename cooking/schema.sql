@@ -16,7 +16,7 @@ CREATE TABLE command(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 restaurant TEXT NOT NULL,
 menu  TEXT NOT NULL,
-Command_day DATE  NOT NULL,
+command_day DATE  NOT NULL,
 command_hour time  NOT NULL
 );
 
