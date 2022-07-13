@@ -11,6 +11,7 @@ from cooking.db import get_db
 
 bp = Blueprint("participant", __name__, url_prefix="/participant")
 
+
 @bp.route("/")
 def index():
     """Show all the commands for the participant"""
@@ -22,16 +23,18 @@ def index():
     ).fetchall()
     return render_template("participant/index.html", participants=participants)
 
+
 @bp.route("/commands")
 def index_2():
     """Show all the commands for the participant, most recent first."""
     db = get_db()
     commands = db.execute(
-        "SELECT id, restaurant, menu, Command_day, command_hour"
+        "SELECT id, restaurant, menu, command_day, command_hour"
         " FROM command"
-        " ORDER BY Command_day DESC"
+        " ORDER BY command_day DESC"
     ).fetchall()
     return render_template("participant/command_index.html", commands=commands)
+
 
 @bp.route("/order/command/<int:command_id>", methods=("GET", "POST"))
 @login_required
@@ -52,13 +55,12 @@ def order(command_id):
             db = get_db()
             db.execute(
                 "INSERT INTO participant (mail, name, command_details, command_id) VALUES (?, ?, ?,?)",
-                (mail, name, command_details,command_id),
+                (mail, name, command_details, command_id),
             )
             db.commit()
             return redirect(url_for("participant.index_2"))
 
     return render_template("participant/order.html")
-
 
 
 def get_participant(id, ):
@@ -73,7 +75,7 @@ def get_participant(id, ):
     """
     participant = (
         get_db().execute(
-            "SELECT p.id, name, mail, command_details, command_id,restaurant"
+            "SELECT p.id, name, mail, command_details, command_id, restaurant"
             " FROM participant p JOIN command c ON p.command_id = c.id "
             " WHERE p.id = ?",
             (id,),
@@ -111,12 +113,12 @@ def create():
             db = get_db()
             db.execute(
                 "INSERT INTO participant (mail, name, command_details, command_id) VALUES (?, ?, ?,?)",
-                (mail, name, command_details,command_id),
+                (mail, name, command_details, command_id),
             )
             db.commit()
             return redirect(url_for("participant.index"))
 
-    return render_template("participant/create.html",commands=commands)
+    return render_template("participant/create.html", commands=commands)
 
 
 @bp.route("/<int:id>/update", methods=("GET", "POST"))
@@ -132,9 +134,14 @@ def update(id):
     if request.method == "POST":
         name = request.form["name"]
         mail = request.form["mail"]
+        command_details = request.form["command_details"]
         error = None
 
         if not name:
+            error = "name is required."
+        if not mail:
+            error = "mail is required."
+        if not command_details:
             error = "name is required."
 
         if error is not None:
@@ -142,12 +149,13 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                "UPDATE participant SET name = ?, mail = ? WHERE id = ?", (name, mail, id)
+                "UPDATE participant SET name = ?, mail = ?, command_details = ? WHERE id = ?",
+                (name, mail, command_details, id)
             )
             db.commit()
             return redirect(url_for("participant.index"))
 
-    return render_template("participant/update.html", participant=participant,commands=commands)
+    return render_template("participant/update.html", participant=participant, commands=commands)
 
 
 @bp.route("/<int:id>/delete", methods=("POST",))
